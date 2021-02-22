@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberService {
 
-    @Autowired
-    private SqlSession sqlSession;
+    private final MemberMapper memberMapper;
+
+    public MemberService(MemberMapper memberMapper){
+        this.memberMapper = memberMapper;
+    }
 }
