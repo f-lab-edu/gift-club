@@ -7,7 +7,6 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
     private Long memberId;
     private String memberEmail;
