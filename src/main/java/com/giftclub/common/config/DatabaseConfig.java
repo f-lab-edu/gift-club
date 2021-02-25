@@ -22,6 +22,13 @@ public class DatabaseConfig {
         return sessionFactory.getObject();
     }
 
+    /**
+     * mybatis 를 위한 설정 파일
+     *
+     * @param sqlSessionFactory
+     * @return sqlSessionTemplate
+     * @throws Exception
+     */
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(final SqlSessionFactory sqlSessionFactory)
             throws Exception {

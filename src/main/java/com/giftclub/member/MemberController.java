@@ -21,17 +21,16 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public Member signup(@RequestBody final Member member) throws Exception {
-        memberService.validateSignUp(member);
-        return memberService.signup(member);
-
+    public Member signup(@RequestBody Member member) throws Exception {
+        this.memberService.validateSignUp(member);
+        return this.memberService.SignUp(member);
     }
 
     @PostMapping("/login")
-    public Member login(@RequestBody Map<String, String> loginParams, HttpSession session) {
-        Member member = memberService.login(loginParams.get("memberEmail"), loginParams.get("memberPassword"));
+    public Member login(@RequestBody final Map<String, String> loginParams, final HttpSession session) {
+        final Member member =
+                this.memberService.login(loginParams.get("memberEmail"), loginParams.get("memberPassword"));
         session.setAttribute("member", member);
         return member;
     }
-
 }

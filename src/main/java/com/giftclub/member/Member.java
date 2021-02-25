@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -18,11 +18,11 @@ public class Member {
     private String memberName;
     @NonNull
     private String memberPassword;
-    private Date memberBirth;
+    private LocalDate memberBirth;
 
-    public static boolean checkNullRequiredField(Member member) {
-        return member.getMemberPassword() == null || member.getMemberName() == null || member.getMemberEmail() == null;
+    public static boolean checkNullRequiredField(final Member member) {
+        return member.getMemberPassword() == null
+                || member.getMemberName() == null
+                || member.getMemberEmail() == null;
     }
 }
-
-
