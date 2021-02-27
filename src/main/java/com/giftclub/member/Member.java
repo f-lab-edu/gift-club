@@ -2,17 +2,21 @@ package com.giftclub.member;
 
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
-@Builder
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Member {
     private Long memberId;
+    @NonNull
     private String memberEmail;
+    @NonNull
     private String memberName;
+    @NonNull
     private String memberPassword;
-    private Date memberBirth;
+    private LocalDate memberBirth;
 }
 
 

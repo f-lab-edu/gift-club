@@ -1,15 +1,12 @@
 package com.giftclub.member;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class MemberService {
 
     private final MemberMapper memberMapper;
 
-    public MemberService(MemberMapper memberMapper){
-        this.memberMapper = memberMapper;
-    }
 }
