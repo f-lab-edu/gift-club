@@ -16,6 +16,8 @@ public class Member {
     private String memberName;
     @NonNull
     private String memberPassword;
+    @NonNull
+    private String memberNumber;
     private LocalDate memberBirth;
 }
 

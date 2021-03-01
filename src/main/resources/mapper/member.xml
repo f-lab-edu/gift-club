@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.giftclub.member.MemberMapper">
+	<insert id="insertMember">
+    insert into member(member_email, member_name, member_password, member_birth, member_number)
+    values (#{memberEmail}, #{memberName}, #{memberPassword}, now(), #{memberNumber});
+</insert>
+
+    <select id="LoginMember" resultType="com.giftclub.member.Member">
+        select member_email, member_password
+        from member
+        where member_email = #{memberEmail} and member_password = #{memberPassword}
+    </select>
+
+    <select id="checkEmail" resultType="com.giftclub.member.Member">
+        select member_email
+        from member
+        where member_email = #{memberEmail}
+    </select>
 
 </mapper>
