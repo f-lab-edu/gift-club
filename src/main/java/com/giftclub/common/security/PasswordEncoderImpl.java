@@ -1,8 +1,9 @@
 package com.giftclub.common.security;
 
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
-public class PasswordEncoder {
+public class PasswordEncoderImpl extends PasswordEncoder {
     public static String bytesToHex(byte[] bytes) {
         StringBuilder builder = new StringBuilder();
         for (byte b : bytes) {
@@ -11,15 +12,12 @@ public class PasswordEncoder {
         return builder.toString();
     }
 
-    public static String encode(String memberPassword) {
-
+    @Override
+    public String encode(String memberPassword) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
-        md.update(memberPassword.getBytes());`
-        return bytesToHex(md.digest());
+        md.update(memberPassword.getBytes());
+        return PasswordEncoderImpl.bytesToHex(md.digest());
 
     }
 
-    public static boolean matches(String memberPassword, String realUserPassword) {
-        return encode(memberPassword).equals(encode(realUserPassword));
-    }
 }

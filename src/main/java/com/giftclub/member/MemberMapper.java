@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 public interface MemberMapper {
     public int insertMember(Member member);
 
-    public Member checkEmailExists(String memberEmail);
+    public int checkEmailExists(String memberEmail);
+
+    public Member getMemberByMemberEmail(String memberEmail);
 }

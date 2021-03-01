@@ -8,7 +8,11 @@
     insert into member(member_email, member_name, member_password, member_birth)
     values (#{memberEmail}, #{memberName}, #{memberPassword}, #{memberBirth}  );
 </insert>
-    <select id="checkEmailExists" parameterType="com.giftclub.member.Member" resultType="com.giftclub.member.Member">
-    select * from member where member_email =#{memberEmail} ;
+    <select id="checkEmailExists" parameterType="com.giftclub.member.Member" resultType="int">
+    select count(member_email) from member where member_email =#{memberEmail} ;
+</select>
+    <select id="getMemberByMemberEmail" parameterType="com.giftclub.member.Member"
+            resultType="com.giftclub.member.Member">
+    select  * from member where member_email =#{memberEmail} ;
 </select>
 </mapper>

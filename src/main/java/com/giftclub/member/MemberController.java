@@ -1,6 +1,6 @@
 package com.giftclub.member;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,24 +11,28 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping(value = "/members")
 public class MemberController {
 
-    private SignupService signupService;
+    private MemberService memberService;
+    private SessionLoginService sessionLoginService;
 
+    @Autowired
+    public MemberController(MemberService memberService, SessionLoginService sessionLoginService) {
+        this.memberService = memberService;
+        this.sessionLoginService = sessionLoginService;
+    }
 
     @PostMapping("/signup")
     public Member signup(@RequestBody Member member) throws Exception {
-        this.signupService.validateSignUp(member);
-        return this.signupService.signup(member);
+        memberService.validateSignUp(member);
+        return memberService.signup(member);
 
     }
 
     @PostMapping("/login")
     public Member login(@RequestBody Map<String, String> loginParams, HttpSession session) throws NoSuchAlgorithmException {
-        Member member = this.signupService.login(loginParams.get("memberEmail"), loginParams.get("memberPassword"));
-        session.setAttribute("member", member);
+        Member member = sessionLoginService.login(loginParams.get("memberEmail"), loginParams.get("memberPassword"), session);
         return member;
     }
 
