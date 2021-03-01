@@ -27,8 +27,8 @@ public class MemberService {
         }
      return memberMapper.insertMember(member);
     }
-    public Member login(Map<String, String> map) throws SQLException {
-        return memberMapper.LoginMember(map);
+    public Member login(String memberEmail, String memberPassword) throws SQLException {
+        return memberMapper.LoginMember(memberEmail, memberPassword);
     }
 
     public Member checkEmail(String email) throws SQLException {
