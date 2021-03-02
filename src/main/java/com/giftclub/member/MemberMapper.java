@@ -11,7 +11,7 @@ import java.util.Map;
 public interface MemberMapper {
     public int insertMember(Member member) throws SQLException;
 
-    public Member LoginMember(String memberEmail, String memberPassword) throws SQLException;
+    public Member findByEmailAndPassword(String memberEmail, String memberPassword) throws SQLException;
 
     public Member checkEmail(String email) throws SQLException;
 }

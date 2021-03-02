@@ -1,7 +1,5 @@
 package com.giftclub.member;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -14,16 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.Map;
 
-@Api(tags = "Member", description = "사용자 API")
 @RestController("/member")
 @RequiredArgsConstructor
 public class MemberController {
 
    private final MemberService memberService;
 
-   @ApiOperation(value = "가입하기", notes = "중복 이메일, 이름을 검사합니다.")
+
    @PostMapping("/regist")
    public ResponseEntity register(@RequestBody Member member) throws SQLException {
       if(memberService.checkEmail(member.getMemberEmail()) != null){
@@ -32,29 +28,20 @@ public class MemberController {
       return new ResponseEntity<>(memberService.regist(member), HttpStatus.OK);
 
    }
-   @ApiOperation(value = "로그인", notes = "중복 이메일, 이름을 검사합니다.")
+
    @PostMapping("/login")
-   public ResponseEntity<Member> login(@RequestBody MemberLoginRequest request, HttpSession session) throws SQLException {
-      String email = request.getMemberEmail();
-      String password = request.getMemberPassword();
+   public Object login(String memberEmail, String memberPassword, HttpSession session) throws SQLException {
+
       try {
-         Member memberInfo = memberService.login(email, password);
-         if(memberInfo != null){
-            session.setAttribute("memberInfo",memberInfo);
+         Member memberInfo = memberService.login(memberEmail, memberPassword);
+         if (memberInfo != null) {
+            session.setAttribute("memberInfo", memberInfo);
+            return new ResponseEntity<>(memberService.login(memberEmail, memberPassword), HttpStatus.OK);
          }
-      }catch (Exception e){
+      } catch (Exception e) {
          e.printStackTrace();
+         return new ResponseEntity<>(memberService.login(memberEmail, memberPassword), HttpStatus.NOT_FOUND);
       }
-
-      return new ResponseEntity<>(memberService.login(email, password),HttpStatus.OK);
-   }
-
-   @Setter
-   @Getter
-   private static class MemberLoginRequest {
-      @NonNull
-      private String memberEmail;
-      @NonNull
-      private String memberPassword;
+      return memberService.login(memberEmail, memberPassword);
    }
 }

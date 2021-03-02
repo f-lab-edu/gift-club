@@ -8,13 +8,13 @@
     values (#{memberEmail}, #{memberName}, #{memberPassword}, now(), #{memberNumber});
 </insert>
 
-    <select id="LoginMember" resultType="com.giftclub.member.Member">
+    <select id="findByEmailAndPassword" resultType="com.giftclub.member.Member">
         select member_email, member_password
         from member
         where member_email = #{memberEmail} and member_password = #{memberPassword}
     </select>
 
-    <select id="checkEmail" resultType="com.giftclub.member.Member">
+    <select id="findByEmail" resultType="com.giftclub.member.Member">
         select member_email
         from member
         where member_email = #{memberEmail}

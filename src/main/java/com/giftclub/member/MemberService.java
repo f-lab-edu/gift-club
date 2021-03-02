@@ -28,7 +28,15 @@ public class MemberService {
      return memberMapper.insertMember(member);
     }
     public Member login(String memberEmail, String memberPassword) throws SQLException {
-        return memberMapper.LoginMember(memberEmail, memberPassword);
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(memberPassword.getBytes());
+            memberPassword.format("%040x", new BigInteger(1, md.digest()));
+        }
+        catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return memberMapper.findByEmailAndPassword(memberEmail, memberPassword);
     }
 
     public Member checkEmail(String email) throws SQLException {

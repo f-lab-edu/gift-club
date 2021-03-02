@@ -1,4 +1,4 @@
-package com.giftclub.common.config;
+package com.giftclub.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 @Configuration
 @MapperScan(basePackages = "com.giftclub.member")
 public class DatabaseConfig {
+
     @Bean
     public SqlSessionFactory sqlSessionFactory(final DataSource dataSource) throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
