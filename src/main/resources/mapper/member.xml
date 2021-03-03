@@ -2,17 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.giftclub.member.MemberMapper">
-    <insert id="insertMember" parameterType="com.giftclub.member.Member" useGeneratedKeys="true"
-            keyProperty="memberId">
-    INSERT INTO Member(member_email, member_name, member_password, member_birth)
-    VALUES (#{memberEmail}, #{memberName}, #{memberPassword}, #{memberBirth}  );
-</insert>
-    <select id="checkEmailExists" parameterType="com.giftclub.member.Member" resultType="int">
-    SELECT COUNT(member_email) FROM Member WHERE member_email =#{memberEmail} ;
+<mapper namespace="com.giftclub.mapper.MemberMapper">
+
+    <insert id="insertMember" parameterType="com.giftclub.member.Member" useGeneratedKeys="true" keyProperty="memberId">
+            INSERT INTO Member(member_email, member_name, member_password, member_birth) VALUES (#{memberEmail}, #{memberName}, #{memberPassword}, #{memberBirth}  );
+ </insert>
+
+    <select id="checkEmailExists" parameterType="com.giftclub.member.Member" resultType="boolean">
+    SELECT     IF(COUNT(*) = 1, 1, 0) FROM Member WHERE member_email =#{memberEmail} ;
 </select>
+
     <select id="getMemberByMemberEmail" parameterType="com.giftclub.member.Member"
             resultType="com.giftclub.member.Member">
-    SELECT  * FROM Member WHERE member_email =#{memberEmail} ;
+    SELECT member_id, member_email, member_name, member_password, member_birth FROM Member WHERE member_email =#{memberEmail} ;
 </select>
+
+    <select id="deleteMemberByMemberEmail" parameterType="com.giftclub.member.Member">
+    DELETE   FROM Member WHERE member_email =#{memberEmail} ;
+</select>
+
 </mapper>

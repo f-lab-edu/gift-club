@@ -1,11 +1,8 @@
 package com.giftclub.common.security;
 
-import java.security.NoSuchAlgorithmException;
+public interface PasswordEncoder {
 
-public abstract class PasswordEncoder {
-    public boolean matches(String password, String originalPassword) throws NoSuchAlgorithmException {
-        return this.encode(password).equals(originalPassword);
-    }
+  public boolean matches(String rawPassword, String encodedPassword);
 
-    public abstract String encode(String memberPassword) throws NoSuchAlgorithmException;
+  public abstract String encode(String memberPassword);
 }
