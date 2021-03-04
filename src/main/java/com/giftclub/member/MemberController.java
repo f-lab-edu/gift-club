@@ -1,6 +1,6 @@
 package com.giftclub.member;
 
-import com.giftclub.common.ResponseService;
+import com.giftclub.common.response.ResponseService;
 import com.giftclub.common.model.CommonResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
