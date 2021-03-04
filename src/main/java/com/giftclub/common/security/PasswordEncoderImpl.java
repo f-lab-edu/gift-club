@@ -1,5 +1,6 @@
 package com.giftclub.common.security;
 
+import com.giftclub.common.exception.PasswordNoSuchAlgorithmException;
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
@@ -23,7 +24,7 @@ public class PasswordEncoderImpl implements PasswordEncoder {
       md.update(memberPassword.getBytes());
       return bytesToHex(md.digest());
     } catch (NoSuchAlgorithmException e) {
-      throw new RuntimeException(e);
+      throw new PasswordNoSuchAlgorithmException(e.toString());
     }
   }
 
