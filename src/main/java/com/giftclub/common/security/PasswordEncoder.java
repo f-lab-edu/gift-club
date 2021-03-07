@@ -2,7 +2,7 @@ package com.giftclub.common.security;
 
 public interface PasswordEncoder {
 
-  public boolean matches(String rawPassword, String encodedPassword);
+    public boolean matches(String rawPassword, String encodedPassword);
 
-  public abstract String encode(String memberPassword);
+    public abstract String encode(String memberPassword);
 }

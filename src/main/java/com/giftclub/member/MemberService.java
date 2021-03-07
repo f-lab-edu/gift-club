@@ -10,18 +10,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberService {
 
-  private final MemberMapper memberMapper;
-  private final PasswordEncoder passwordEncoder;
+    private final MemberMapper memberMapper;
+    private final PasswordEncoder passwordEncoder;
 
-  public Member signup(Member member) {
-    member.setMemberPassword(passwordEncoder.encode(member.getMemberPassword()));
-    this.memberMapper.insertMember(member);
-    return member;
-  }
-
-  public void validateSignUp(final Member member) {
-    if (memberMapper.checkEmailExists(member.getMemberEmail())) {
-      throw new ValidationException("이미 존재하는 이메일입니다.");
+    public Member signup(Member member) {
+        member.setMemberPassword(passwordEncoder.encode(member.getMemberPassword()));
+        this.memberMapper.insertMember(member);
+        return member;
     }
-  }
+
+    public void validateSignUp(final Member member) {
+        if (memberMapper.checkEmailExists(member.getMemberEmail())) {
+            throw new ValidationException("이미 존재하는 이메일입니다.");
+        }
+    }
 }

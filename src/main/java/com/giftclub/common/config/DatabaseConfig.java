@@ -14,19 +14,19 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = "com.giftclub.mapper")
 public class DatabaseConfig {
 
-  @Bean
-  public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-    final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-    sessionFactory.setDataSource(dataSource);
-    final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-    sessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
-    return sessionFactory.getObject();
-  }
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource);
+        final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        sessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
+        return sessionFactory.getObject();
+    }
 
-  @Bean
-  public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory)
-      throws Exception {
-    final SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
-    return sqlSessionTemplate;
-  }
+    @Bean
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory)
+            throws Exception {
+        final SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
+        return sqlSessionTemplate;
+    }
 }

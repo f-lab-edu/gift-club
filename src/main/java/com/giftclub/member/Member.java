@@ -12,12 +12,15 @@ import java.time.LocalDate;
 @Builder
 public class Member {
 
-  private Long memberId;
+    private Long memberId;
 
-  @NonNull private String memberEmail;
+    @NonNull
+    private String memberEmail;
 
-  @NonNull private String memberName;
+    @NonNull
+    private String memberName;
 
-  @NonNull private String memberPassword;
-  private LocalDate memberBirth;
+    @NonNull
+    private String memberPassword;
+    private LocalDate memberBirth;
 }

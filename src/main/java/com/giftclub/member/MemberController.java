@@ -1,7 +1,7 @@
 package com.giftclub.member;
 
-import com.giftclub.common.response.ResponseService;
 import com.giftclub.common.model.CommonResult;
+import com.giftclub.common.response.ResponseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,21 +15,22 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/members")
 public class MemberController {
-  private final ResponseService responseService;
-  private final MemberService memberService;
-  private final SessionLoginService sessionLoginService;
 
-  @PostMapping("/signup")
-  public Member signup(@RequestBody Member member) throws Exception {
-    memberService.validateSignUp(member);
-    return memberService.signup(member);
-  }
+    private final ResponseService responseService;
+    private final MemberService memberService;
+    private final SessionLoginService sessionLoginService;
 
-  @PostMapping("/login")
-  public CommonResult login(@RequestBody Map<String, String> loginParams, HttpSession session) {
+    @PostMapping("/signup")
+    public Member signup(@RequestBody Member member) throws Exception {
+        memberService.validateSignUp(member);
+        return memberService.signup(member);
+    }
 
-    sessionLoginService.login(
-        loginParams.get("memberEmail"), loginParams.get("memberPassword"), session);
-    return responseService.getSuccessResult();
-  }
+    @PostMapping("/login")
+    public CommonResult login(@RequestBody Map<String, String> loginParams, HttpSession session) {
+
+        sessionLoginService.login(
+                loginParams.get("memberEmail"), loginParams.get("memberPassword"), session);
+        return responseService.getSuccessResult();
+    }
 }

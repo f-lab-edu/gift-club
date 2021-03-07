@@ -19,38 +19,40 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class MemberControllerTest {
-  @Autowired protected ObjectMapper objectMapper;
-  @Autowired private MockMvc mockMvc;
+    @Autowired
+    protected ObjectMapper objectMapper;
+    @Autowired
+    private MockMvc mockMvc;
 
-  @Test
-  @Transactional
-  @Rollback(true)
-  void signup() throws Exception {
+    @Test
+    @Transactional
+    @Rollback(true)
+    void signup() throws Exception {
 
-    Member member =
-        Member.builder().memberEmail("tes2@com").memberName("w").memberPassword("df").build();
+        Member member =
+                Member.builder().memberEmail("tes2@com").memberName("w").memberPassword("df").build();
 
-    String content = objectMapper.writeValueAsString(member);
-    mockMvc
-        .perform(
-            MockMvcRequestBuilders.post("/members/signup")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(content))
-        .andExpect(status().isOk());
-  }
+        String content = objectMapper.writeValueAsString(member);
+        mockMvc
+                .perform(
+                        MockMvcRequestBuilders.post("/members/signup")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(content))
+                .andExpect(status().isOk());
+    }
 
-  @Test
-  void login() throws Exception {
-    Map<String, String> loginParams = new HashMap<String, String>();
-    loginParams.put("memberEmail", "tes@com");
-    loginParams.put("memberPassword", "df");
+    @Test
+    void login() throws Exception {
+        Map<String, String> loginParams = new HashMap<String, String>();
+        loginParams.put("memberEmail", "tes@com");
+        loginParams.put("memberPassword", "df");
 
-    String content = objectMapper.writeValueAsString(loginParams);
-    mockMvc
-        .perform(
-            MockMvcRequestBuilders.post("/members/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(content))
-        .andExpect(status().isOk());
-  }
+        String content = objectMapper.writeValueAsString(loginParams);
+        mockMvc
+                .perform(
+                        MockMvcRequestBuilders.post("/members/login")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(content))
+                .andExpect(status().isOk());
+    }
 }

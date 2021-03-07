@@ -1,14 +1,18 @@
 package com.giftclub.common.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NonNull;
 
 @Getter
-@Setter
+@AllArgsConstructor
 public class CommonResult {
-  /** 응답 여부 success: 성공여부 반환 code: 응답 코드 ( ) msg: 응답 메시지 상세 */
-  private boolean success;
 
-  private int code;
-  private String msg;
+    /**
+     * 응답 여부 success: 성공여부 반환 msg: 응답 메시지 상세
+     */
+    @NonNull
+    private boolean success;
+    @NonNull
+    private String msg;
 }
