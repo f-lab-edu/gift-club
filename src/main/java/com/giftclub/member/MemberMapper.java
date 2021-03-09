@@ -9,9 +9,9 @@ import java.util.Map;
 
 @Mapper
 public interface MemberMapper {
-    public int insertMember(Member member) throws SQLException;
+    public void insertMember(Member member) throws SQLException;
 
     public Member findByEmailAndPassword(String memberEmail, String memberPassword) throws SQLException;
 
-    public Member checkEmail(String email) throws SQLException;
+    public boolean findByEmail(String email);
 }
