@@ -1,7 +1,7 @@
 package com.giftclub.member;
 
 import com.giftclub.common.exception.ValidationException;
-import com.giftclub.common.security.PasswordEncoder;
+import com.giftclub.common.security.Encoder;
 import com.giftclub.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberMapper memberMapper;
-    private final PasswordEncoder passwordEncoder;
+    private final Encoder encoder;
 
     public Member signup(Member member) {
-        member.setMemberPassword(passwordEncoder.encode(member.getMemberPassword()));
+        member.setMemberPassword(encoder.encode(member.getMemberPassword()));
         this.memberMapper.insertMember(member);
         return member;
     }

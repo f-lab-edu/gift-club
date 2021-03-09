@@ -1,6 +1,7 @@
 package com.giftclub.member;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.giftclub.member.request.MemberLoginRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,14 +12,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class MemberControllerTest {
+
     @Autowired
     protected ObjectMapper objectMapper;
     @Autowired
@@ -43,11 +42,11 @@ class MemberControllerTest {
 
     @Test
     void login() throws Exception {
-        Map<String, String> loginParams = new HashMap<String, String>();
-        loginParams.put("memberEmail", "tes@com");
-        loginParams.put("memberPassword", "df");
 
-        String content = objectMapper.writeValueAsString(loginParams);
+        MemberLoginRequest memberLoginRequest
+                = MemberLoginRequest.builder().memberEmail("tes@com").memberPassword("df").build();
+
+        String content = objectMapper.writeValueAsString(memberLoginRequest);
         mockMvc
                 .perform(
                         MockMvcRequestBuilders.post("/members/login")
