@@ -22,6 +22,7 @@ public class SessionLoginService {
     private final Encoder encoder;
 
     public void login(String memberEmail, String memberPassword) {
+
         Member matchMember = memberMapper.getMemberByMemberEmail(memberEmail);
         if (matchMember == null | !encoder.matches(memberPassword, matchMember.getMemberPassword())) {
             throw new LoginFailedException("사용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
