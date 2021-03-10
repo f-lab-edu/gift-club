@@ -15,19 +15,20 @@ import javax.servlet.http.HttpSession;
  */
 @Service
 @RequiredArgsConstructor
-public class SessionLoginService {
+public class SessionLoginService implements LoginService {
 
     private final HttpSession httpSession;
     private final MemberMapper memberMapper;
     private final Encoder encoder;
 
-    public void login(String memberEmail, String memberPassword) {
+    @Override
+    public String login(String memberEmail, String memberPassword) {
 
         Member matchMember = memberMapper.getMemberByMemberEmail(memberEmail);
         if (matchMember == null | !encoder.matches(memberPassword, matchMember.getMemberPassword())) {
             throw new LoginFailedException("사용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
         }
         SessionUtils.setLoginMemberId(httpSession, matchMember.getMemberId());
-        return;
+        return null;
     }
 }
