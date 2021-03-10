@@ -14,8 +14,8 @@
         where member_email = #{memberEmail} and member_password = #{memberPassword}
     </select>
 
-    <select id="findByEmail" resultType="com.giftclub.member.Member">
-        select member_email
+    <select id="findByEmail" resultType="boolean">
+        select IF(COUNT(*) = 1, 1, 0)
         from member
         where member_email = #{memberEmail}
     </select>

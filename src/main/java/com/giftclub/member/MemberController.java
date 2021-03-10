@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Api(tags = "User", description = "사용자  API")
-@RestController("/member")
+@RestController("/members")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -27,7 +27,6 @@ public class MemberController {
    public Member register(@RequestBody Member member) throws SQLException {
 
       memberService.checkEmail(member.getMemberEmail());
-
       return memberService.regist(member);
    }
 
