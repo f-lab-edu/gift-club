@@ -14,12 +14,14 @@ public class MemberService {
     private final Encoder encoder;
 
     public Member signup(Member member) {
+
         member.setMemberPassword(encoder.encode(member.getMemberPassword()));
         this.memberMapper.insertMember(member);
         return member;
     }
 
     public void validateSignUp(final Member member) {
+
         if (memberMapper.checkEmailExists(member.getMemberEmail())) {
             throw new ValidationException("이미 존재하는 이메일입니다.");
         }
