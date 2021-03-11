@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 public class SessionLoginService implements LoginService {
 
     final String LOGIN_MEMBER_ID = "LOGIN_MEMBER_ID";
+    final String SUCCESS_RESULTS = "OK";
     private final HttpSession httpSession;
     private final MemberMapper memberMapper;
     private final Encoder encoder;
@@ -29,7 +30,7 @@ public class SessionLoginService implements LoginService {
             throw new LoginFailedException("사용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
         }
         httpSession.setAttribute(LOGIN_MEMBER_ID, matchMember.getMemberId());
-        return "OK";
+        return SUCCESS_RESULTS;
     }
 
 
