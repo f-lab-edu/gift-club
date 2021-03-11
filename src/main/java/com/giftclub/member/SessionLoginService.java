@@ -29,16 +29,19 @@ public class SessionLoginService implements LoginService {
         if (matchMember == null | !encoder.matches(memberPassword, matchMember.getMemberPassword())) {
             throw new LoginFailedException("사용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
         }
-        httpSession.setAttribute(LOGIN_MEMBER_ID, matchMember.getMemberId());
+        setLoginMemberId(matchMember.getMemberId());
         return SUCCESS_RESULTS;
     }
-
 
     public void logout() {
         httpSession.removeAttribute(LOGIN_MEMBER_ID);
     }
 
-    public Long getLoginMemberId() {
+    private Long getLoginMemberId() {
         return (Long) httpSession.getAttribute(LOGIN_MEMBER_ID);
+    }
+
+    private void setLoginMemberId(Long memberId) {
+        httpSession.setAttribute(LOGIN_MEMBER_ID, memberId);
     }
 }
