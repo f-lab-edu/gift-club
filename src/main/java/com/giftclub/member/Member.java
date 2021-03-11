@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Setter
 @RequiredArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Member {
 
     private Long memberId;
@@ -22,7 +23,7 @@ public class Member {
     private String memberPassword;
 
     @NonNull
-    private String memberNumber;
+    private String memberPhone;
 
     private LocalDate memberBirth;
 }

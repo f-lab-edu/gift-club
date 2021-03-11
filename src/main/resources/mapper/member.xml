@@ -2,22 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.giftclub.member.MemberMapper">
+<mapper namespace="com.giftclub.mapper.MemberMapper">
+
 	<insert id="insertMember">
-    insert into member(member_email, member_name, member_password, member_birth, member_number)
-    values (#{memberEmail}, #{memberName}, #{memberPassword}, now(), #{memberNumber});
+    INSERT INTO member(member_email, member_name, member_password, member_birth, member_phone)
+    values (#{memberEmail}, #{memberName}, #{memberPassword}, now(), #{memberPhone});
 </insert>
 
     <select id="findByEmailAndPassword" resultType="com.giftclub.member.Member">
-        select member_email, member_password
-        from member
-        where member_email = #{memberEmail} and member_password = #{memberPassword}
+        SELECT *
+        FROM member
+        WHERE member_email = #{memberEmail} AND member_password = #{memberPassword}
     </select>
 
     <select id="findByEmail" resultType="boolean">
-        select IF(COUNT(*) = 1, 1, 0)
-        from member
-        where member_email = #{memberEmail}
+        SELECT IF(COUNT(*) = 1, 1, 0)
+        FROM member
+        WHERE member_email = #{memberEmail}
     </select>
 
 </mapper>

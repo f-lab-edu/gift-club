@@ -5,11 +5,11 @@ public class EncoderNoSuchAlgorithmException extends RuntimeException{
     public EncoderNoSuchAlgorithmException() {
     }
 
-    public EncoderNoSuchAlgorithmException(final String message) {
+    public EncoderNoSuchAlgorithmException(String message) {
         super(message);
     }
 
-    public EncoderNoSuchAlgorithmException(final String message, final Throwable cause) {
+    public EncoderNoSuchAlgorithmException(String message, Throwable cause) {
         super(message, cause);
     }
 }

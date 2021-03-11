@@ -1,5 +1,6 @@
 package com.giftclub.member;
 
+import com.giftclub.common.MemberAuthentication;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -21,6 +23,7 @@ import java.sql.SQLException;
 public class MemberController {
 
    private final MemberService memberService;
+   private final MemberAuthentication loginSession;
 
    @ApiOperation(value = "가입하기", notes = "중복 이메일, 이름을 검사합니다.")
    @PostMapping("/regist")
@@ -32,18 +35,8 @@ public class MemberController {
 
    @ApiOperation(value = "로그인", notes = "성공시 session을 생성합니다.")
    @PostMapping("/login")
-   public Member login(String memberEmail, String memberPassword, HttpSession session) throws SQLException {
+   public Member login(@RequestParam String memberEmail, @RequestParam String memberPassword) {
 
-      try {
-         Member memberInfo = memberService.login(memberEmail, memberPassword);
-         if (memberInfo != null) {
-            session.setAttribute("memberInfo", memberInfo);
-            return memberService.login(memberEmail, memberPassword);
-         }
-      } catch (Exception e) {
-         e.printStackTrace();
-         return memberService.login(memberEmail, memberPassword);
-      }
-      return memberService.login(memberEmail, memberPassword);
+      return loginSession.loginSession(memberEmail, memberPassword);
    }
 }
