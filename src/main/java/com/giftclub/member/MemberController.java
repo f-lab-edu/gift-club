@@ -1,7 +1,5 @@
 package com.giftclub.member;
 
-import com.giftclub.common.model.CommonResult;
-import com.giftclub.common.response.ResponseService;
 import com.giftclub.member.request.MemberLoginRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,11 +17,11 @@ public class MemberController {
 
 
     @PostMapping("/login")
-    public CommonResult login(@RequestBody MemberLoginRequest memberLoginRequest) {
+    public String login(@RequestBody MemberLoginRequest memberLoginRequest) {
 
         loginService.login(
                 memberLoginRequest.getMemberEmail(), memberLoginRequest.getMemberPassword());
-        return ResponseService.getSuccessResult();
+        return "OK";
     }
 
     @PostMapping("/signup")
