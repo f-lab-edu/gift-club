@@ -29,7 +29,7 @@ public class SessionLoginService implements LoginService {
             throw new LoginFailedException("사용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
         }
         httpSession.setAttribute(LOGIN_MEMBER_ID, matchMember.getMemberId());
-        return null;
+        return "OK";
     }
 
 

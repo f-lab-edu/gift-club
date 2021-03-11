@@ -19,9 +19,8 @@ public class MemberController {
     @PostMapping("/login")
     public String login(@RequestBody MemberLoginRequest memberLoginRequest) {
 
-        loginService.login(
+        return loginService.login(
                 memberLoginRequest.getMemberEmail(), memberLoginRequest.getMemberPassword());
-        return "OK";
     }
 
     @PostMapping("/signup")
