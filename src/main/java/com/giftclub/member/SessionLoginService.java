@@ -2,8 +2,8 @@ package com.giftclub.member;
 
 import com.giftclub.common.exception.LoginFailedException;
 import com.giftclub.common.security.Encoder;
-import com.giftclub.common.utils.SessionUtils;
 import com.giftclub.mapper.MemberMapper;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class SessionLoginService implements LoginService {
 
+    final String LOGIN_MEMBER_ID = "LOGIN_MEMBER_ID";
     private final HttpSession httpSession;
     private final MemberMapper memberMapper;
     private final Encoder encoder;
@@ -28,7 +29,19 @@ public class SessionLoginService implements LoginService {
         if (matchMember == null | !encoder.matches(memberPassword, matchMember.getMemberPassword())) {
             throw new LoginFailedException("사용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
         }
-        SessionUtils.setLoginMemberId(httpSession, matchMember.getMemberId());
+        setLoginMemberId(httpSession, matchMember.getMemberId());
         return null;
+    }
+
+    public void setLoginMemberId(HttpSession session, @NonNull Long memberId) {
+        session.setAttribute(LOGIN_MEMBER_ID, memberId);
+    }
+
+    public void logout(HttpSession session) {
+        session.removeAttribute(LOGIN_MEMBER_ID);
+    }
+
+    public Long getLoginMemberId(HttpSession session) {
+        return (Long) session.getAttribute(LOGIN_MEMBER_ID);
     }
 }
