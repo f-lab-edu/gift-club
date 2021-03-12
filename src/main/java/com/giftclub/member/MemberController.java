@@ -24,7 +24,7 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public Member signup(@RequestBody Member member) throws Exception {
+    public Member signup(@RequestBody Member member) {
 
         memberService.validateSignUp(member);
         return memberService.signup(member);
