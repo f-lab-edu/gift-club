@@ -9,5 +9,4 @@ class GiftclubApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }
