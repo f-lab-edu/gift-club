@@ -21,7 +21,7 @@ public class LoginSession implements MemberAuthentication {
         String sha256Password = sha256.encryption(memberPassword);
         Member memberInfo = memberMapper.findByEmailAndPassword(memberEmail, sha256Password);
 
-        if(memberInfo == null){
+        if(memberInfo == null) {
             throw new LoginFailedException("회원정보가 틀렸습니다.");
         }else {
             session.setAttribute("member", memberInfo);
