@@ -27,16 +27,16 @@ public class MemberController {
 
    @ApiOperation(value = "가입하기", notes = "중복 이메일, 이름을 검사합니다.")
    @PostMapping("/regist")
-   public Member register(@RequestBody Member member) throws SQLException {
+   public void register(@RequestBody Member member) throws SQLException {
 
       memberService.checkEmail(member.getMemberEmail());
-      return memberService.regist(member);
+      memberService.regist(member);
    }
 
    @ApiOperation(value = "로그인", notes = "성공시 session을 생성합니다.")
    @PostMapping("/login")
-   public Member login(@RequestParam String memberEmail, @RequestParam String memberPassword) {
+   public void login(@RequestParam String memberEmail, @RequestParam String memberPassword) {
 
-      return loginSession.loginSession(memberEmail, memberPassword);
+      loginSession.loginSession(memberEmail, memberPassword);
    }
 }

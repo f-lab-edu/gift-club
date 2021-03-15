@@ -22,9 +22,6 @@ public class Member {
     @NonNull
     private String memberPassword;
 
-    @NonNull
-    private String memberPhone;
-
     private LocalDate memberBirth;
 }
 

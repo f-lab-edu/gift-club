@@ -5,12 +5,12 @@
 <mapper namespace="com.giftclub.mapper.MemberMapper">
 
 	<insert id="insertMember">
-    INSERT INTO member(member_email, member_name, member_password, member_birth, member_phone)
-    values (#{memberEmail}, #{memberName}, #{memberPassword}, now(), #{memberPhone});
+    INSERT INTO member(member_email, member_name, member_password, member_birth)
+    values (#{memberEmail}, #{memberName}, #{memberPassword}, now());
 </insert>
 
     <select id="findByEmailAndPassword" resultType="com.giftclub.member.Member">
-        SELECT *
+        SELECT member_id, member_email, member_name, member_password, member_birth
         FROM member
         WHERE member_email = #{memberEmail} AND member_password = #{memberPassword}
     </select>
