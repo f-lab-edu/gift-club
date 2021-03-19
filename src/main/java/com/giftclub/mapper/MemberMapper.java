@@ -1,15 +1,13 @@
 package com.giftclub.mapper;
 
 import com.giftclub.member.Member;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
-
-@Mapper
+@Repository
 public interface MemberMapper {
-    public void insertMember(Member member) throws SQLException;
+    public void insertMember(Member member);
 
-    public Member findByEmailAndPassword(String memberEmail, String memberPassword);
+    public Member findByEmailAndPassword(String memberEmail);
 
     public boolean findByEmail(String email);
 }

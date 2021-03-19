@@ -1,14 +1,15 @@
 package com.giftclub.member;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
-@NoArgsConstructor
-@ToString
+@Builder
 public class Member {
 
     private Long memberId;
