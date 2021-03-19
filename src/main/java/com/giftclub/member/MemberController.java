@@ -1,29 +1,23 @@
 package com.giftclub.member;
 
-import com.giftclub.common.MemberAuthentication;
+import com.giftclub.common.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.Getter;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
-@Api(tags = "User", description = "사용자  API")
+@Api(tags = "Member", description = "사용자  API")
 @RestController("/members")
 @RequiredArgsConstructor
 public class MemberController {
 
    private final MemberService memberService;
-   private final MemberAuthentication loginSession;
+   private final LoginService loginSession;
 
    @ApiOperation(value = "가입하기", notes = "중복 이메일, 이름을 검사합니다.")
    @PostMapping("/regist")

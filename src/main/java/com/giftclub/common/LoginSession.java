@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 @Service
 @RequiredArgsConstructor
-public class LoginSession implements MemberAuthentication {
+public class LoginSession implements LoginService {
 
     private final HttpSession session;
     private final MemberMapper memberMapper;

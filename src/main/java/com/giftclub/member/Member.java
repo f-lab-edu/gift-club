@@ -6,9 +6,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
-@NoArgsConstructor
-@ToString
+@Builder
 public class Member {
 
     private Long memberId;
