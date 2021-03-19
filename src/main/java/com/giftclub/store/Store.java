@@ -6,11 +6,16 @@ import lombok.NonNull;
 import lombok.Setter;
 
 @Getter
-@Setter
 @Builder
 public class Store {
 
     private Long storeId;
+
+    @NonNull
+    private Long storeCategoryId;
+
+    @NonNull
+    private String memberId;
 
     @NonNull
     private String storeName;
@@ -20,8 +25,5 @@ public class Store {
 
     @NonNull
     private String storeIntroduce;
-
-    @NonNull
-    private String storeCeo;
 
 }

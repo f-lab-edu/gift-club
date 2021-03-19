@@ -6,12 +6,11 @@ import lombok.NonNull;
 import lombok.Setter;
 
 @Getter
-@Setter
 @Builder
 public class StoreCategory {
 
-    private Long categoryId;
+    private Long storeCategoryId;
 
     @NonNull
-    private String category_type;
+    private String storeCategoryName;
 }
