@@ -16,7 +16,6 @@ public class StoreController {
     private final StoreService storeService;
     private final MemberService memberService;
 
-    @ApiOperation(value = "상점 등록하기")
     @PostMapping("/register")
     public void insertStore(@RequestBody Store store){
         memberService.getMemberByMemberId(store.getMemberId());
