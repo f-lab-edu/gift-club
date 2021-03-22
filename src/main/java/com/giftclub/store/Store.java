@@ -1,12 +1,11 @@
 package com.giftclub.store;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.stereotype.Service;
 
 @Getter
 @Builder
+@AllArgsConstructor
 public class Store {
 
     private Long storeId;
@@ -15,15 +14,13 @@ public class Store {
     private Long storeCategoryId;
 
     @NonNull
-    private String memberId;
+    private Long memberId;
 
     @NonNull
     private String storeName;
 
     @NonNull
-    private int storePhone;
-
-    @NonNull
+    private String storePhone;
     private String storeIntroduce;
 
 }

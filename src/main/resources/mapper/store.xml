@@ -4,4 +4,15 @@
 
 <mapper namespace="com.giftclub.mapper.StoreMapper">
 
+    <insert id="insertStore" parameterType = "com.giftclub.store.Store">
+        INSERT INTO store(store_category_id, member_id, store_name, store_phone, store_introduce)
+        VALUES (#{storeCategoryId}, #{memberId}, #{storeName}, #{storePhone}, #{storeIntroduce})
+    </insert>
+
+    <select id="checkStoreExists" resultType="boolean">
+        SELECT IF(COUNT(*) = 1, 1, 0)
+        FROM store
+        WHERE store_name = #{storeName}
+    </select>
+
 </mapper>

@@ -1,12 +1,10 @@
 package com.giftclub.store;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Builder
+@AllArgsConstructor
 public class StoreCategory {
 
     private Long storeCategoryId;

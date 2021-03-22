@@ -11,4 +11,6 @@ public interface MemberMapper {
     public boolean checkEmailExists(String memberEmail);
 
     public Member getMemberByMemberEmail(String memberEmail);
+
+    public Member getMemberByMemberId(Long memberId);
 }

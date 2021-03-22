@@ -1,5 +1,6 @@
 package com.giftclub.member;
 
+import com.giftclub.common.exception.UserNotFoundException;
 import com.giftclub.common.exception.ValidationException;
 import com.giftclub.common.security.Encoder;
 import com.giftclub.mapper.MemberMapper;
@@ -24,6 +25,14 @@ public class MemberService {
 
         if (memberMapper.checkEmailExists(member.getMemberEmail())) {
             throw new ValidationException("이미 존재하는 이메일입니다.");
+        }
+    }
+
+    public void getMemberByMemberId(Long memberId) {
+
+        Member member = memberMapper.getMemberByMemberId(memberId);
+        if (member.getMemberTypeId() != 2) {
+            throw new UserNotFoundException("판매자만 등록할 수 있습니다.");
         }
     }
 }
