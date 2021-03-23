@@ -23,6 +23,12 @@ public class MemberController {
                 memberLoginRequest.getMemberEmail(), memberLoginRequest.getMemberPassword());
     }
 
+    @PostMapping("/logout")
+    public void logout() {
+
+        loginService.logout();
+    }
+
     @PostMapping("/signup")
     public Member signup(@RequestBody Member member) {
 
