@@ -1,19 +1,18 @@
 package com.giftclub.common;
 
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
 
-@RequiredArgsConstructor
+@Slf4j
 @Component
 public class SessionUtils {
-    final String LOGIN_MEMBER_ID = "LOGIN_MEMBER_ID";
-    private final HttpSession httpSession;
+    private final String LOGIN_MEMBER_ID = "LOGIN_MEMBER_ID";
+    @Autowired
+    private HttpSession httpSession;
 
-    public void logout() {
-        httpSession.removeAttribute(LOGIN_MEMBER_ID);
-    }
 
     public Long getLoginMemberId() {
 
@@ -21,12 +20,12 @@ public class SessionUtils {
     }
 
     public void setLoginMemberId(Long memberId) {
-
-        httpSession.setAttribute(LOGIN_MEMBER_ID, memberId);
+        log.info("setLoginMemberId" + memberId);
+        httpSession.setAttribute("LOGIN_MEMBER_ID", memberId);
     }
 
     public void deleteLoginMemberId() {
 
-        httpSession.setAttribute(LOGIN_MEMBER_ID, getLoginMemberId());
+        httpSession.removeAttribute(LOGIN_MEMBER_ID);
     }
 }

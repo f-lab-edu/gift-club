@@ -1,27 +1,40 @@
 package com.giftclub.member.aop;
 
 import com.giftclub.common.SessionUtils;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpSession;
+
+@Slf4j
 @Aspect
+@SuppressWarnings("unchecked")
 @Component
-@RequiredArgsConstructor
-public aspect LoginRequiredAspect {
+public class LoginRequiredAspect {
 
-    private final SessionUtils sessionUtils;
+    @Autowired
+    private SessionUtils sessionUtils;
 
-    @Before("@annotation(LoginRequired)")
-    public void loginRequired(ProceedingJoinPoint method) throws Throwable {
+
+    @Around("@annotation(LoginRequired)")
+    public Object loginRequired(ProceedingJoinPoint joinPoint) throws Throwable {
+
+        log.debug("loginRequired 진입");
+        HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getRequest().getSession();
         if (sessionUtils.getLoginMemberId() == null) {
-            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED); //unchecked exception  extends RuntimeException
+            log.info("loginRequired null");
+            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED); //unchecked exception extends RuntimeException
         }
-        method.proceed();
+        return joinPoint.proceed();//execution target method
+
     }
 
 }

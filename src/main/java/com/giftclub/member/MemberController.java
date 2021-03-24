@@ -21,8 +21,9 @@ public class MemberController {
                 memberLoginRequest.getMemberEmail(), memberLoginRequest.getMemberPassword());
     }
 
-    @LoginRequired
+
     @PostMapping("/logout")
+    @LoginRequired
     public void logout() {
 
         loginService.logout();
