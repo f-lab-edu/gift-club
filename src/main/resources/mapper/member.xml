@@ -17,8 +17,12 @@
   SELECT member_id, member_email, member_name, member_password, member_birth FROM Member WHERE member_email =#{memberEmail};
 </select>
 
-    <select id="deleteMemberByMemberEmail">
-  DELETE FROM Member WHERE member_email =#{memberEmail};
-</select>
 
+    <delete id="deleteMemberByMemberId">
+  DELETE FROM Member WHERE member_id =#{memberId};
+</delete>
+
+    <update id="updateMemberByMemberId" keyProperty="memberId">
+  UPDATE  Member SET member_name=#{memberName}, member_password=#{memberPassword}, member_birth=#{memberBirth}   WHERE member_id=#{memberId};
+</update>
 </mapper>

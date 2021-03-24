@@ -32,6 +32,7 @@ public class SessionLoginService implements LoginService {
         return null;
     }
 
+    @Override
     public void logout() {
         httpSession.removeAttribute(LOGIN_MEMBER_ID);
     }
