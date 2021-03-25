@@ -13,6 +13,7 @@ public class MemberService {
 
     private final MemberMapper memberMapper;
     private final Encoder encoder;
+    private final int SELLER = 2;
 
     public Member signup(Member member) {
 
@@ -31,7 +32,7 @@ public class MemberService {
     public void getMemberByMemberId(Long memberId) {
 
         Member member = memberMapper.getMemberByMemberId(memberId);
-        if (member.getMemberTypeId() != 2) {
+        if (member.getMemberTypeId() != SELLER) {
             throw new UserNotFoundException("판매자만 등록할 수 있습니다.");
         }
     }

@@ -9,7 +9,7 @@
         VALUES (#{storeCategoryId}, #{memberId}, #{storeName}, #{storePhone}, #{storeIntroduce})
     </insert>
 
-    <select id="checkStoreExists" resultType="boolean">
+    <select id="isStoreExists" resultType="boolean">
         SELECT IF(COUNT(*) = 1, 1, 0)
         FROM store
         WHERE store_name = #{storeName}

@@ -1,7 +1,6 @@
 package com.giftclub.store;
 
 import com.giftclub.member.MemberService;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +15,7 @@ public class StoreController {
     private final StoreService storeService;
     private final MemberService memberService;
 
-    @PostMapping("/register")
+    @PostMapping("/")
     public void insertStore(@RequestBody Store store){
         memberService.getMemberByMemberId(store.getMemberId());
         storeService.validateStore(store.getStoreName());

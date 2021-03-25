@@ -1,8 +1,6 @@
 package com.giftclub.member;
 
 import com.giftclub.member.request.MemberLoginRequest;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

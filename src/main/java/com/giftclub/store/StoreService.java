@@ -16,7 +16,7 @@ public class StoreService {
     }
 
     public void validateStore(String storeName) {
-        if(storeMapper.checkStoreExists(storeName)){
+        if(storeMapper.isStoreExists(storeName)){
             throw new ValidationException("이미 존재하는 상호명입니다.");
         }
     }

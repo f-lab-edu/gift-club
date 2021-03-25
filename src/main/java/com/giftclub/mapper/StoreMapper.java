@@ -8,5 +8,5 @@ public interface StoreMapper {
 
     public void insertStore(Store store);
 
-    public boolean checkStoreExists(String storeName);
+    public boolean isStoreExists(String storeName);
 }

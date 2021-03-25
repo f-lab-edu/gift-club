@@ -1,7 +1,7 @@
 CREATE TABLE `member` (
   `member_id` int NOT NULL AUTO_INCREMENT,
   `member_name` varchar(20) NOT NULL,
-  `member_email` varchar(255) NOT NULL,
+  `member_email` varchar(255) UNIQUE NOT NULL,
   `member_password` varchar(255) NOT NULL,
   `member_birth` date NOT NULL,
   `member_type_id` int NOT NULL,
