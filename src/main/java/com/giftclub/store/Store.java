@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 @Getter
 @Builder
-@AllArgsConstructor
 public class Store {
 
     private Long storeId;
