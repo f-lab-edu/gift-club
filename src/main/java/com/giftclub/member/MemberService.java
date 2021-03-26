@@ -1,5 +1,6 @@
 package com.giftclub.member;
 
+import com.giftclub.common.exception.ForbiddenException;
 import com.giftclub.common.exception.UserNotFoundException;
 import com.giftclub.common.exception.ValidationException;
 import com.giftclub.common.security.Encoder;
@@ -33,7 +34,7 @@ public class MemberService {
 
         Member member = memberMapper.getMemberByMemberId(memberId);
         if (member.getMemberTypeId() != SELLER) {
-            throw new UserNotFoundException("판매자만 등록할 수 있습니다.");
+            throw new ForbiddenException("판매자만 등록할 수 있습니다.");
         }
     }
 }
