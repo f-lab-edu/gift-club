@@ -23,4 +23,10 @@
         WHERE store.store_id = #{storeId}
     </select>
 
+    <update id="modifyStoreById">
+        UPDATE store
+        SET store_name = #{storeName}, store_phone = #{storePhone}, store_introduce = #{storeIntroduce}
+        WHERE store_id = #{storeId}
+    </update>
+
 </mapper>

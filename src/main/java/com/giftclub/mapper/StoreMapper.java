@@ -11,4 +11,6 @@ public interface StoreMapper {
     public boolean isStoreExists(String storeName);
 
     public Store selectStoreById(Long storeId);
+
+    public void modifyStoreById(Store store);
 }

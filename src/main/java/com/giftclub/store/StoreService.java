@@ -24,4 +24,8 @@ public class StoreService {
     public void selectStoreById(Long storeId) {
         storeMapper.selectStoreById(storeId);
     }
+
+    public void modifyStoreById(Store store) {
+        storeMapper.modifyStoreById(store);
+    }
 }
