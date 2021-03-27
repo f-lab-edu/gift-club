@@ -4,7 +4,7 @@
 
 <mapper namespace="com.giftclub.mapper.StoreMapper">
 
-    <insert id="insertStore" parameterType = "com.giftclub.store.Store">
+    <insert id="insertStore" parameterType="com.giftclub.store.Store">
         INSERT INTO store(store_category_id, member_id, store_name, store_phone, store_introduce)
         VALUES (#{storeCategoryId}, #{memberId}, #{storeName}, #{storePhone}, #{storeIntroduce})
     </insert>
@@ -13,6 +13,14 @@
         SELECT IF(COUNT(*) = 1, 1, 0)
         FROM store
         WHERE store_name = #{storeName}
+    </select>
+
+    <select id="selectStoreById" resultType="com.giftclub.store.Store">
+        SELECT store.store_id, store.store_name, store.store_phone, store.store_introduce, member.member_name, store_category.store_category_name
+        FROM store
+        inner join store_category on store.store_category_id = store_category.store_category_id
+        inner join member on store.member_id = member.member_id
+        WHERE store.store_id = #{storeId}
     </select>
 
 </mapper>

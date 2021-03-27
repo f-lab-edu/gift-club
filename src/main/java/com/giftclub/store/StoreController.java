@@ -2,24 +2,26 @@ package com.giftclub.store;
 
 import com.giftclub.member.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/stores")
+@RequestMapping("/stores/{storeId}")
 public class StoreController {
 
     private final StoreService storeService;
     private final MemberService memberService;
 
-    @PostMapping("/")
-    public void insertStore(@RequestBody Store store){
+    @PostMapping
+    public void insertStore(@RequestBody Store store) {
         memberService.getMemberByMemberId(store.getMemberId());
         storeService.validateStore(store.getStoreName());
         storeService.insertStore(store);
+    }
+
+    @GetMapping
+    public void selectStoreById(@PathVariable Long storeId) {
+        storeService.selectStoreById(storeId);
     }
 
 }
