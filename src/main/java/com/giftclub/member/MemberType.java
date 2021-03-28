@@ -1,9 +1,6 @@
 package com.giftclub.member;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 @Getter
 @Builder

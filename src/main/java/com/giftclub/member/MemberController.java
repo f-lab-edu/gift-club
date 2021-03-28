@@ -29,5 +29,4 @@ public class MemberController {
         return memberService.signup(member);
     }
 
-
 }
