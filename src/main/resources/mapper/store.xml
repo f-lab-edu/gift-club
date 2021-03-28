@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.giftclub.mapper.StoreMapper">
+
+    <insert id="insertStore" parameterType = "com.giftclub.store.Store">
+        INSERT INTO store(store_category_id, member_id, store_name, store_phone, store_introduce)
+        VALUES (#{storeCategoryId}, #{memberId}, #{storeName}, #{storePhone}, #{storeIntroduce})
+    </insert>
+
+    <select id="isStoreExists" resultType="boolean">
+        SELECT IF(COUNT(*) = 1, 1, 0)
+        FROM store
+        WHERE store_name = #{storeName}
+    </select>
+
+</mapper>

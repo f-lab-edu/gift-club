@@ -5,20 +5,30 @@
 <mapper namespace="com.giftclub.mapper.MemberMapper">
 
     <insert id="insertMember" useGeneratedKeys="true" keyProperty="memberId">
-    INSERT INTO Member(member_email, member_name, member_password, member_birth) VALUES (#{memberEmail}, #{memberName}, #{memberPassword}, #{memberBirth});
- </insert>
+        INSERT INTO Member(member_email, member_name, member_password, member_birth, member_type_id)
+        VALUES (#{memberEmail}, #{memberName}, #{memberPassword}, #{memberBirth}, #{memberTypeId})
+    </insert>
 
     <select id="checkEmailExists" resultType="boolean">
-  SELECT   IF(COUNT(*) = 1, 1, 0) FROM Member WHERE member_email =#{memberEmail};
-</select>
+        SELECT IF(COUNT(*) = 1, 1, 0)
+        FROM Member
+        WHERE member_email = #{memberEmail}
+    </select>
 
-    <select id="getMemberByMemberEmail"
-            resultType="com.giftclub.member.Member">
-  SELECT member_id, member_email, member_name, member_password, member_birth FROM Member WHERE member_email =#{memberEmail};
-</select>
+    <select id="getMemberByMemberEmail" resultType="com.giftclub.member.Member">
+        SELECT member_id, member_type_id, member_email, member_name, member_password, member_birth
+        FROM Member
+        WHERE member_email = #{memberEmail}
+    </select>
+
+    <select id="getMemberByMemberId" resultType="com.giftclub.member.Member">
+        SELECT member_id, member_type_id, member_email, member_name, member_password, member_birth
+        FROM Member
+        WHERE member_id = #{memberId}
+    </select>
 
     <select id="deleteMemberByMemberEmail">
-  DELETE FROM Member WHERE member_email =#{memberEmail};
-</select>
+        DELETE FROM Member WHERE member_email = #{memberEmail}
+    </select>
 
 </mapper>
