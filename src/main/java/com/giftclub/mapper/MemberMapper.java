@@ -15,4 +15,6 @@ public interface MemberMapper {
     public void updateMemberByMemberId(Member member);
 
     public void deleteMemberByMemberId(Long memberId);
+
+    public Member getMemberByMemberId(Long memberId);
 }

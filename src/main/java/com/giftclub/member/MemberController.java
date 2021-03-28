@@ -13,7 +13,6 @@ public class MemberController {
     private final MemberService memberService;
     private final LoginService loginService;
 
-
     @PostMapping("/login")
     public String login(@RequestBody MemberLoginRequest memberLoginRequest) {
 

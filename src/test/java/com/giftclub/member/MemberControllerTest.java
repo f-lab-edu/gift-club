@@ -12,6 +12,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -29,7 +31,7 @@ class MemberControllerTest {
     void signup() throws Exception {
 
         Member member =
-                Member.builder().memberEmail("tes2@com").memberName("w").memberPassword("df").build();
+                Member.builder().memberEmail("tes2@com").memberName("w").memberPassword("df").memberBirth(LocalDate.now()).memberTypeId((long) 2).build();
 
         String content = objectMapper.writeValueAsString(member);
         mockMvc
@@ -44,7 +46,7 @@ class MemberControllerTest {
     void login() throws Exception {
 
         MemberLoginRequest memberLoginRequest
-                = MemberLoginRequest.builder().memberEmail("tes@com").memberPassword("df").build();
+                = MemberLoginRequest.builder().memberEmail("tes@com").memberPassword("private마징가1").build();
 
         String content = objectMapper.writeValueAsString(memberLoginRequest);
         mockMvc
