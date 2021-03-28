@@ -32,6 +32,7 @@ public class MemberService {
 
     @Transactional(rollbackFor = RuntimeException.class)
     public Member update(final Member member) {
+
         member.setMemberPassword(encoder.encode(member.getMemberPassword()));
         memberMapper.updateMemberByMemberId(member);
         return member;
