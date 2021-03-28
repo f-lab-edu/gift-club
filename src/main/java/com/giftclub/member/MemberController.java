@@ -37,14 +37,14 @@ public class MemberController {
     }
 
     @LoginRequired
-    @PutMapping("/update")
+    @PutMapping("")
     public Member update(@RequestBody Member memberUpdateRequest) {
 
         return memberService.update(memberUpdateRequest);
     }
 
     @LoginRequired
-    @DeleteMapping("/delete")
+    @DeleteMapping("")
     public void delete() {
 
         memberService.delete();

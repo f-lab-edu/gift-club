@@ -54,4 +54,6 @@ class MemberControllerTest {
                                 .content(content))
                 .andExpect(status().isOk());
     }
+
+
 }

@@ -29,14 +29,17 @@ public class SessionLoginService implements LoginService {
         if (matchMember == null | !encoder.matches(memberPassword, matchMember.getMemberPassword())) {
             throw new LoginFailedException("사용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
         }
+
         log.info(matchMember.getMemberId() + "member" + matchMember.getMemberId());
         sessionUtils.setLoginMemberId((Long) matchMember.getMemberId());
         log.info("login after: 기존세션아이디" + sessionUtils.getLoginMemberId());
+
         return null;
     }
 
     @Override
     public void logout() {
+
         log.info("기존세션아이디" + sessionUtils.getLoginMemberId());
         sessionUtils.deleteLoginMemberId();
         log.info("로그아웃후세션아이디: null=" + (sessionUtils.getLoginMemberId() == null));
