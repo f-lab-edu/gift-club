@@ -36,14 +36,14 @@ public class MemberController {
     }
 
     @LoginRequired
-    @PutMapping("")
+    @PutMapping
     public Member update(@RequestBody Member memberUpdateRequest) {
 
         return memberService.update(memberUpdateRequest);
     }
 
     @LoginRequired
-    @DeleteMapping("")
+    @DeleteMapping
     public void delete() {
 
         memberService.delete();

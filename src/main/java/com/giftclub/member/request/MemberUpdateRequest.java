@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Builder
 public class MemberUpdateRequest {
 
-
     @NonNull
     private String memberName;
 

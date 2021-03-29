@@ -18,16 +18,15 @@ public class LoginRequiredAspect {
 
     private final SessionUtils sessionUtils;
 
-
     @Around("@annotation(com.giftclub.member.aop.LoginRequired)")
     public Object loginRequired(ProceedingJoinPoint joinPoint) throws Throwable {
 
         if (sessionUtils.getLoginMemberId() == null) {
 
-            log.info("loginRequired null");
+            log.debug("LoginRequired Aspect get Session LoginMemberId null");
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED); // 인증(로그아웃됨) 401 에러 , unchecked exception extends RuntimeException
         }
-        return joinPoint.proceed();//execution target method
+        return joinPoint.proceed(); //execution target method
 
     }
 
