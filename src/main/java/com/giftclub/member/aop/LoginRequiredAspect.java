@@ -23,7 +23,7 @@ public class LoginRequiredAspect {
 
         if (sessionUtils.getLoginMemberId() == null) {
 
-            log.debug("LoginRequired Aspect get Session LoginMemberId null");
+            log.error("LoginRequired Aspect get Session LoginMemberId null");
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED); // 인증(로그아웃됨) 401 에러 , unchecked exception extends RuntimeException
         }
         return joinPoint.proceed(); //execution target method
