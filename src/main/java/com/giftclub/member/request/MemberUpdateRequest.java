@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Getter
 @Builder
-@ToString
+@ToString//Transfer Object 패턴은 ToString 을 붙여주는 것이 좋다
 public class MemberUpdateRequest {
 
     @NonNull

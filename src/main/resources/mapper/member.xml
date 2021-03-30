@@ -33,9 +33,10 @@
 
     <delete id="deleteMemberByMemberId">
          DELETE FROM Member WHERE member_id =#{memberId};
-</delete>
+    </delete>
 
     <update id="updateMemberByMemberId" keyProperty="memberId">
         UPDATE  Member SET member_name=#{memberName}, member_password=#{memberPassword}, member_birth=#{memberBirth}   WHERE member_id=#{memberId};
-</update>
+    </update>
+
 </mapper>
