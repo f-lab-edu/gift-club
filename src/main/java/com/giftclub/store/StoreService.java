@@ -11,7 +11,7 @@ public class StoreService {
 
     private final StoreMapper storeMapper;
 
-    public void insertStore(Store store) {
+    public void registStore(Store store) {
         storeMapper.insertStore(store);
     }
 
@@ -21,7 +21,7 @@ public class StoreService {
         }
     }
 
-    public void selectStoreById(Long storeId) {
-        storeMapper.selectStoreById(storeId);
+    public Store selectStoreById(Long storeId) {
+       return storeMapper.selectStoreById(storeId);
     }
 }

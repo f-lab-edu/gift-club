@@ -40,4 +40,9 @@ public class SessionLoginService implements LoginService {
         sessionUtils.deleteLoginMemberId();
     }
 
+    @Override
+    public Long getCurrentMember() {
+        return sessionUtils.getLoginMemberId();
+    }
+
 }

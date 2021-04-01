@@ -1,5 +1,6 @@
 package com.giftclub.member;
 
+import com.giftclub.store.Store;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -24,6 +25,5 @@ public class Member {
     private String memberPassword;
 
     private LocalDate memberBirth;
-
 
 }
