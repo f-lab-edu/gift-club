@@ -1,0 +1,1 @@
+INSERT INTO `giftclubtest`.`member` (`member_id`, `member_name`, `member_email`, `member_password`, `member_birth`, `member_type_id`) VALUES ('1', 'ew', 'tes@com', '9c840c414db254f4e1c2faa6139a3e5f1afaafc664cdb5b435b1ad1482811860', '19970325', '2');
