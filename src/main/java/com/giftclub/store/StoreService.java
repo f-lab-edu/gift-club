@@ -3,6 +3,8 @@ package com.giftclub.store;
 import com.giftclub.common.exception.ValidationException;
 import com.giftclub.mapper.StoreMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +13,7 @@ public class StoreService {
 
     private final StoreMapper storeMapper;
 
+    @CacheEvict(value = "registStore")
     public void registStore(Store store) {
         storeMapper.insertStore(store);
     }
@@ -20,7 +23,7 @@ public class StoreService {
             throw new ValidationException("이미 존재하는 상호명입니다.");
         }
     }
-
+    @Cacheable(value = "selectStoreById")
     public Store selectStoreById(Long storeId) {
        return storeMapper.selectStoreById(storeId);
     }

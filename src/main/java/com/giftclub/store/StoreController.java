@@ -1,7 +1,6 @@
 package com.giftclub.store;
 
 import com.giftclub.member.MemberRole;
-import com.giftclub.member.MemberService;
 import com.giftclub.member.aop.MemberRoleCheck;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
