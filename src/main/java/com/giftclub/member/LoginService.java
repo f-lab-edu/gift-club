@@ -10,5 +10,5 @@ public interface LoginService {
 
     public void logout();
 
-    public Long getCurrentMember();
+    public Member getCurrentMember();
 }

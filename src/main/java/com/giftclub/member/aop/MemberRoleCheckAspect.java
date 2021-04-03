@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
@@ -21,17 +22,38 @@ import org.springframework.web.client.HttpClientErrorException;
 @RequiredArgsConstructor
 public class MemberRoleCheckAspect {
 
-    private final MemberMapper memberMapper;
     private final LoginService loginService;
 
-    @Around("@annotation(com.giftclub.member.aop.MemberRoleCheck)")
-    public Object memberRoleCheck(ProceedingJoinPoint joinPoint) throws Throwable {
-        Long memberId = loginService.getCurrentMember();
-        Member member = memberMapper.getMemberByMemberId(memberId);
-        if (member.getMemberTypeId() != MemberRole.SELLER.getTypeId()) {
-            throw new MemberRoleException("판매자만 등록할 수 있습니다.");
+    @Before("@annotation(com.giftclub.member.aop.MemberRoleCheck) && @annotation(target)")
+    public void memberRoleCheck(MemberRoleCheck target) {
+
+        if (target.memberRole() == MemberRole.ADMIN) {
+            adminLoginCheck();
+        } else if (target.memberRole() == MemberRole.USER) {
+            memberLoginCheck();
+        } else if (target.memberRole() == MemberRole.SELLER) {
+            sellerLoginCheck();
         }
-        return joinPoint.proceed();
     }
 
+    public void adminLoginCheck() {
+
+        Member member = loginService.getCurrentMember();
+        if (member.getMemberTypeId() != MemberRole.ADMIN.getTypeId())
+            throw new MemberRoleException("관리자만 가능합니다.");
+    }
+
+    public void memberLoginCheck() {
+
+        Member member = loginService.getCurrentMember();
+        if (member.getMemberTypeId() != MemberRole.USER.getTypeId())
+            throw new MemberRoleException("일반회원만 가능합니다");
+    }
+
+    public void sellerLoginCheck() {
+
+        Member member = loginService.getCurrentMember();
+        if (member.getMemberTypeId() != MemberRole.SELLER.getTypeId())
+            throw new MemberRoleException("판매자만 가능합니다.");
+    }
 }

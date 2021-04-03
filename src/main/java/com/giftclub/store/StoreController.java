@@ -1,5 +1,6 @@
 package com.giftclub.store;
 
+import com.giftclub.member.MemberRole;
 import com.giftclub.member.MemberService;
 import com.giftclub.member.aop.MemberRoleCheck;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +12,9 @@ import org.springframework.web.bind.annotation.*;
 public class StoreController {
 
     private final StoreService storeService;
-    private final MemberService memberService;
-
 
     @PostMapping
-    @MemberRoleCheck
+    @MemberRoleCheck(memberRole = MemberRole.SELLER)
     public void insertStore(@RequestBody Store store) {
 
         storeService.validateStore(store.getStoreName());
