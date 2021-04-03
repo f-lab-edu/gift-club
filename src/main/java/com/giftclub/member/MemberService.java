@@ -1,20 +1,21 @@
 package com.giftclub.member;
 
-import com.giftclub.common.exception.ForbiddenException;
-import com.giftclub.common.exception.UserNotFoundException;
+import com.giftclub.common.SessionUtils;
+import com.giftclub.common.exception.MemberRoleException;
 import com.giftclub.common.exception.ValidationException;
 import com.giftclub.common.security.Encoder;
 import com.giftclub.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
 
     private final MemberMapper memberMapper;
+    private final SessionUtils sessionUtils;
     private final Encoder encoder;
-    private final int SELLER = 2;
 
     public Member signup(Member member) {
 
@@ -30,11 +31,19 @@ public class MemberService {
         }
     }
 
-    public void getMemberByMemberId(Long memberId) {
+    @Transactional(rollbackFor = RuntimeException.class)
+    public Member update(final Member member) {
 
-        Member member = memberMapper.getMemberByMemberId(memberId);
-        if (member.getMemberTypeId() != SELLER) {
-            throw new ForbiddenException("판매자만 등록할 수 있습니다.");
-        }
+        member.setMemberPassword(encoder.encode(member.getMemberPassword()));
+        memberMapper.updateMemberByMemberId(member);
+        return member;
+
+    }
+
+    @Transactional(rollbackFor = RuntimeException.class)
+    public void delete() {
+
+        memberMapper.deleteMemberByMemberId(sessionUtils.getLoginMemberId());
+
     }
 }
