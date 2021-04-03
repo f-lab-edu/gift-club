@@ -12,5 +12,9 @@ public interface MemberMapper {
 
     public Member getMemberByMemberEmail(String memberEmail);
 
+    public void updateMemberByMemberId(Member member);
+
+    public void deleteMemberByMemberId(Long memberId);
+
     public Member getMemberByMemberId(Long memberId);
 }

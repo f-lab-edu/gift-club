@@ -1,18 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.giftclub.mapper.StoreMapper">
-
-    <insert id="insertStore" parameterType = "com.giftclub.store.Store">
+    <resultMap type="com.giftclub.member.Member"
+               id="Member">
+        <result column="member_id" property="memberId"/>
+        <result column="member_name" property="memberName"/>
+        <collection property="store" resultMap="Store"/>
+    </resultMap>
+    <resultMap type="com.giftclub.store.StoreCategory" id="StoreCategory">
+        <result column="store_category_id" property="storeCategoryId"/>
+        <result column="store_category_name" property="storeCategoryName"/>
+    </resultMap>
+    <resultMap type="com.giftclub.store.Store" id="Store">
+        <result column="store_id" property="storeId"/>
+        <result column="store_name" property="storeName"/>
+        <result column="store_phone" property="storePhone"/>
+        <result column="store_introduce" property="storeIntroduce"/>
+        <result column="store_category_id" property="storeCategoryId"/>
+        <result column="member_id" property="memberId"/>
+        <collection property="storeCategory" resultMap="StoreCategory"/>
+    </resultMap>
+    <insert id="insertStore" parameterType="com.giftclub.store.Store">
         INSERT INTO store(store_category_id, member_id, store_name, store_phone, store_introduce)
         VALUES (#{storeCategoryId}, #{memberId}, #{storeName}, #{storePhone}, #{storeIntroduce})
     </insert>
-
     <select id="isStoreExists" resultType="boolean">
         SELECT IF(COUNT(*) = 1, 1, 0)
         FROM store
         WHERE store_name = #{storeName}
     </select>
+    <select id="selectStoreById" resultMap="Store">
+        SELECT store.store_id AS storeId, store.store_name AS storeName, store.store_phone AS storePhone, store.store_introduce AS storeIntroduce, member.member_name AS memberName, store_category.store_category_name AS storeCategoryName
+        FROM store
+        inner join store_category ON store.store_category_id = store_category.store_category_id
+        inner join member ON store.member_id = member.member_id
+        WHERE store.store_id = #{storeId}
+    </select>
+
+    <update id="modifyStoreById">
+        UPDATE store
+        SET store_name = #{storeName}, store_phone = #{storePhone}, store_introduce = #{storeIntroduce}
+        WHERE store_id = #{storeId}
+    </update>
 
 </mapper>

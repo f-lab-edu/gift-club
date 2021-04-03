@@ -5,8 +5,8 @@
 <mapper namespace="com.giftclub.mapper.ProductMapper">
 
     <insert id="insertProduct" parameterType="com.giftclub.product.Product">
-        INSERT INTO product(product_id, product_name, product_price, product_information, store_id)
-        VALUES (#{productId}, #{productName}, #{productPrice}, #{productInformation}, #{storeId})
+        INSERT INTO product(id, name, price, information, store_id)
+        VALUES (#{id}, #{name}, #{price}, #{information}, #{storeId})
     </insert>
 
 </mapper>

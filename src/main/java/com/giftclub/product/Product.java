@@ -8,16 +8,16 @@ import lombok.NonNull;
 @Builder
 public class Product {
 
-    private Long productId;
+    private Long id;
 
     @NonNull
-    private String productName;
+    private String name;
 
     @NonNull
-    private int productPrice;
+    private int price;
 
     @NonNull
-    private String productInformation;
+    private String information;
 
     @NonNull
     private Long storeId;

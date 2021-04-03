@@ -1,15 +1,14 @@
 package com.giftclub.member;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.giftclub.store.Store;
 import lombok.*;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
+@Builder
 public class Member {
 
     private Long memberId;
