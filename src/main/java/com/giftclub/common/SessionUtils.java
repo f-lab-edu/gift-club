@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 public class SessionUtils {
 
     private static final String LOGIN_MEMBER_ID = "LOGIN_MEMBER_ID";
+    private static final String LOGIN_MEMBER = "LOGIN_MEMBER";
     private final HttpSession httpSession;
 
     public Long getLoginMemberId() {
@@ -20,7 +21,7 @@ public class SessionUtils {
     }
 
     public Member getLoginMember() {
-        return (Member) httpSession.getAttribute("LOGIN_MEMBER");
+        return (Member) httpSession.getAttribute(LOGIN_MEMBER);
     }
 
     public void setLoginMemberId(Long memberId) {
@@ -29,7 +30,7 @@ public class SessionUtils {
     }
 
     public void setLoginMember(Member member) {
-        httpSession.setAttribute("LOGIN_MEMBER", member);
+        httpSession.setAttribute(LOGIN_MEMBER, member);
     }
 
 
