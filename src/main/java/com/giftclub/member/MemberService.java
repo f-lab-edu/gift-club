@@ -19,6 +19,7 @@ public class MemberService {
 
     public Member signup(Member member) {
 
+        validateSignUp(member);
         member.setMemberPassword(encoder.encode(member.getMemberPassword()));
         this.memberMapper.insertMember(member);
         return member;
