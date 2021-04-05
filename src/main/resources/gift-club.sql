@@ -38,6 +38,7 @@ CREATE TABLE `product` (
   `price` INTEGER NOT NULL,
   `information` varchar(1000) NOT NULL,
   `store_id` INTEGER NOT NULL,
+  `stock` INTEGER NOT NULL,
   FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`)
 );
 

@@ -17,6 +17,9 @@ public class Product {
     private int price;
 
     @NonNull
+    private int stock;
+
+    @NonNull
     private String information;
 
     @NonNull
