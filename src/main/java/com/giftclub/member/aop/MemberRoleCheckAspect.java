@@ -27,32 +27,44 @@ public class MemberRoleCheckAspect {
     @Before("@annotation(com.giftclub.member.aop.MemberRoleCheck) && @annotation(target)")
     public void memberRoleCheck(MemberRoleCheck target) {
 
-        if (target.memberRole() == MemberRole.ADMIN) {
-            adminLoginCheck();
-        } else if (target.memberRole() == MemberRole.USER) {
-            memberLoginCheck();
-        } else if (target.memberRole() == MemberRole.SELLER) {
-            sellerLoginCheck();
+        switch (target.memberRole()) {
+            case ADMIN:
+                adminLoginCheck();
+                break;
+            case USER:
+                memberLoginCheck();
+                break;
+            case SELLER:
+                sellerLoginCheck();
+                break;
+            default:
+                throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
         }
+    }
+
+    public Member getCurrentMember() {
+
+        Member member = loginService.getCurrentMember();
+        return member;
     }
 
     public void adminLoginCheck() {
 
-        Member member = loginService.getCurrentMember();
+        Member member = getCurrentMember();
         if (member.getMemberTypeId() != MemberRole.ADMIN.getTypeId())
             throw new MemberRoleException("관리자만 가능합니다.");
     }
 
     public void memberLoginCheck() {
 
-        Member member = loginService.getCurrentMember();
+        Member member = getCurrentMember();
         if (member.getMemberTypeId() != MemberRole.USER.getTypeId())
             throw new MemberRoleException("일반회원만 가능합니다");
     }
 
     public void sellerLoginCheck() {
 
-        Member member = loginService.getCurrentMember();
+        Member member = getCurrentMember();
         if (member.getMemberTypeId() != MemberRole.SELLER.getTypeId())
             throw new MemberRoleException("판매자만 가능합니다.");
     }
