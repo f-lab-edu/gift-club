@@ -13,4 +13,16 @@ public class ProductService {
     public void insertProduct(Product product) {
         productMapper.insertProduct(product);
     }
+
+    public Product selectProductById(Long id) {
+
+        return productMapper.selectProductById(id);
+    }
+
+    public void decreaseProduct(Long id) {
+
+        Product productStock = selectProductById(id);
+        productStock.setStock(productStock.getStock() - 1);
+        productMapper.decreaseProduct(id, productStock.getStock());
+    }
 }

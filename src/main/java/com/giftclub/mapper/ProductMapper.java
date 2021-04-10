@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 public interface ProductMapper {
 
     public void insertProduct(Product product);
+
+    public Product selectProductById(Long id);
+
+    public void decreaseProduct(Long id, int stock);
 }
