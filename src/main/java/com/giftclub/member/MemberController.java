@@ -28,10 +28,10 @@ public class MemberController {
         loginService.logout();
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/signUp")
     public Member signup(@RequestBody Member member) {
 
-        return memberService.signup(member);
+        return memberService.signUp(member);
     }
 
     @LoginRequired

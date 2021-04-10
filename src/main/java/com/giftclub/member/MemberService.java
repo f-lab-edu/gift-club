@@ -17,7 +17,8 @@ public class MemberService {
     private final SessionUtils sessionUtils;
     private final Encoder encoder;
 
-    public Member signup(Member member) {
+    @Transactional
+    public Member signUp(Member member) {
 
         validateSignUp(member);
         member.setMemberPassword(encoder.encode(member.getMemberPassword()));
@@ -32,7 +33,7 @@ public class MemberService {
         }
     }
 
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional
     public Member update(final Member member) {
 
         member.setMemberPassword(encoder.encode(member.getMemberPassword()));
@@ -41,7 +42,7 @@ public class MemberService {
 
     }
 
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional
     public void delete() {
 
         memberMapper.deleteMemberByMemberId(sessionUtils.getLoginMemberId());

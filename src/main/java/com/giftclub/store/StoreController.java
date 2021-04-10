@@ -18,7 +18,6 @@ public class StoreController {
     @MemberRoleCheck(memberRole = MemberRole.SELLER)
     public void insertStore(@RequestBody Store store) {
 
-        storeService.validateStore(store.getStoreName());
         storeService.registStore(store);
     }
 
@@ -31,7 +30,6 @@ public class StoreController {
     @MemberRoleCheck(memberRole = MemberRole.SELLER)
     public void modifyStoreById(@RequestBody Store store) {
 
-        storeService.validateStore(store.getStoreName());
         storeService.modifyStoreById(store);
     }
 
