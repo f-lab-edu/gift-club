@@ -20,7 +20,6 @@ public class MemberController {
                 memberLoginRequest.getMemberEmail(), memberLoginRequest.getMemberPassword());
     }
 
-
     @PostMapping("/logout")
     @LoginRequired
     public void logout() {
@@ -47,6 +46,4 @@ public class MemberController {
 
         memberService.delete();
     }
-
-
 }
