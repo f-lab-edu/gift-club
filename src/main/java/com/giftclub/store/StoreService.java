@@ -13,7 +13,7 @@ public class StoreService {
 
     private final StoreMapper storeMapper;
 
-    @CacheEvict(value = "registStore")
+    @CacheEvict(value = "selectStoreById")
     public void registStore(Store store) {
         storeMapper.insertStore(store);
     }
