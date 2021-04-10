@@ -31,10 +31,16 @@
         WHERE store_name = #{storeName}
     </select>
     <select id="selectStoreById" resultMap="Store">
-        SELECT store.store_id AS storeId, store.store_name AS storeName, store.store_phone AS storePhone, store.store_introduce AS storeIntroduce, member.member_name AS memberName, store_category.store_category_name AS storeCategoryName
+        SELECT
+        store.store_id,
+        store.store_name,
+        store.store_phone,
+        store.store_introduce,
+        member.member_name,
+        store_category.store_category_name
         FROM store
-        inner join store_category ON store.store_category_id = store_category.store_category_id
-        inner join member ON store.member_id = member.member_id
+        JOIN store_category ON store.store_category_id = store_category.store_category_id
+        JOIN member ON store.member_id = member.member_id
         WHERE store.store_id = #{storeId}
     </select>
 

@@ -15,6 +15,7 @@ public class StoreService {
 
     private final StoreMapper storeMapper;
 
+
     @Transactional
     @CacheEvict(value = "store")
     public void registStore(Store store) {
