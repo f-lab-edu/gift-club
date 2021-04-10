@@ -39,13 +39,11 @@ public class MemberService {
         member.setMemberPassword(encoder.encode(member.getMemberPassword()));
         memberMapper.updateMemberByMemberId(member);
         return member;
-
     }
 
     @Transactional
     public void delete() {
 
-        memberMapper.deleteMemberByMemberId(sessionUtils.getLoginMemberId());
-
+        memberMapper.deleteMemberByMemberId(sessionUtils.getLoginMember().getMemberId());
     }
 }
