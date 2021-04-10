@@ -17,7 +17,6 @@ public class StoreService {
 
 
     @Transactional
-    @CacheEvict(value = "store")
     public void registStore(Store store) {
 
         validateStore(store.getStoreName());
@@ -31,14 +30,14 @@ public class StoreService {
         }
     }
 
-    @Cacheable(value = "store")
+    @Cacheable(value = "store", key = "#storeId")
     public Store selectStoreById(Long storeId) {
 
         return storeMapper.selectStoreById(storeId);
     }
 
     @Transactional
-    @CachePut(value = "store")
+    @CachePut(value = "store", key = "#store.getStoreId()")
     public void modifyStoreById(Store store) {
 
         validateStore(store.getStoreName());

@@ -2,11 +2,13 @@ package com.giftclub.store;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StoreCategory {
+public class StoreCategory implements Serializable {
 
     private Long storeCategoryId;
 
