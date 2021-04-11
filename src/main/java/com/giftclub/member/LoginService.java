@@ -9,4 +9,6 @@ public interface LoginService {
     public String login(String memberEmail, String memberPassword);
 
     public void logout();
+
+    public Member getCurrentMember();
 }

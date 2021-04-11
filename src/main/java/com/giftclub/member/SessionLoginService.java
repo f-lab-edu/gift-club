@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SessionLoginService implements LoginService {
 
-
     private final SessionUtils sessionUtils;
     private final MemberMapper memberMapper;
     private final Encoder encoder;
@@ -29,8 +28,7 @@ public class SessionLoginService implements LoginService {
         if (matchMember == null | !encoder.matches(memberPassword, matchMember.getMemberPassword())) {
             throw new LoginFailedException("사용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
         }
-
-        sessionUtils.setLoginMemberId((Long) matchMember.getMemberId());
+        sessionUtils.setLoginMember(matchMember);
         return null;
     }
 
@@ -38,6 +36,12 @@ public class SessionLoginService implements LoginService {
     public void logout() {
 
         sessionUtils.deleteLoginMemberId();
+    }
+
+    @Override
+    public Member getCurrentMember() {
+
+        return sessionUtils.getLoginMember();
     }
 
 }
