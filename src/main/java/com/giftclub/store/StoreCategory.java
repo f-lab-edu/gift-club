@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StoreCategory implements Serializable {
+public class StoreCategory {
 
     private Long storeCategoryId;
 

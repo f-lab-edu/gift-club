@@ -6,6 +6,7 @@ import com.giftclub.common.exception.ValidationException;
 import com.giftclub.common.security.Encoder;
 import com.giftclub.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,7 +46,7 @@ public class MemberService {
     @Transactional
     public void delete() {
 
-        memberMapper.deleteMemberByMemberId(sessionUtils.getLoginMemberId());
+        memberMapper.deleteMemberByMemberId(sessionUtils.getLoginMember().getMemberId());
 
     }
 }

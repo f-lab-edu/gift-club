@@ -6,6 +6,9 @@ import com.giftclub.common.security.Encoder;
 import com.giftclub.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 
@@ -20,6 +23,7 @@ public class SessionLoginService implements LoginService {
     private final SessionUtils sessionUtils;
     private final MemberMapper memberMapper;
     private final Encoder encoder;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public String login(String memberEmail, String memberPassword) {

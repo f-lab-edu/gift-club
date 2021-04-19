@@ -3,7 +3,10 @@ package com.giftclub.member;
 import com.giftclub.member.aop.LoginRequired;
 import com.giftclub.member.request.MemberLoginRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @RestController

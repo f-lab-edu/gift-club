@@ -30,7 +30,7 @@ public class StoreService {
         }
     }
 
-    @Cacheable(value = "store", key = "#storeId")
+    @Cacheable(value = "store", key = "#storeId", cacheManager = "redisCacheManager")
     public Store selectStoreById(Long storeId) {
 
         return storeMapper.selectStoreById(storeId);

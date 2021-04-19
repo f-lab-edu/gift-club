@@ -1,5 +1,8 @@
 package com.giftclub.member;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.giftclub.store.Store;
 import lombok.*;
 
@@ -10,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @Builder
-public class Member implements Serializable {
+public class Member implements Serializable{
 
     private Long memberId;
 
@@ -26,5 +29,6 @@ public class Member implements Serializable {
     private String memberPassword;
 
     private LocalDate memberBirth;
+
 
 }

@@ -1,15 +1,12 @@
 package com.giftclub.store;
 
-import com.giftclub.member.Member;
 import lombok.*;
-
-import java.io.Serializable;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Store implements Serializable {
+public class Store {
 
     private Long storeId;
 
