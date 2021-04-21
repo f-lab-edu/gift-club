@@ -1,8 +1,6 @@
 package com.giftclub.store;
 
-import com.giftclub.member.Member;
 import lombok.*;
-import org.springframework.stereotype.Service;
 
 @Getter
 @Builder
@@ -23,8 +21,8 @@ public class Store {
 
     @NonNull
     private String storePhone;
+
     private String storeIntroduce;
-
     private StoreCategory storeCategory;
-
+    private String memberName;
 }

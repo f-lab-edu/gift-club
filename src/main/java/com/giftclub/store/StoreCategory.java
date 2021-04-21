@@ -2,6 +2,8 @@ package com.giftclub.store;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Builder
 @AllArgsConstructor

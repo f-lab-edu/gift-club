@@ -3,7 +3,10 @@ package com.giftclub.member;
 import com.giftclub.member.aop.LoginRequired;
 import com.giftclub.member.request.MemberLoginRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,7 +23,6 @@ public class MemberController {
                 memberLoginRequest.getMemberEmail(), memberLoginRequest.getMemberPassword());
     }
 
-
     @PostMapping("/logout")
     @LoginRequired
     public void logout() {
@@ -28,11 +30,10 @@ public class MemberController {
         loginService.logout();
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/signUp")
     public Member signup(@RequestBody Member member) {
 
-        memberService.validateSignUp(member);
-        return memberService.signup(member);
+        return memberService.signUp(member);
     }
 
     @LoginRequired
@@ -48,6 +49,4 @@ public class MemberController {
 
         memberService.delete();
     }
-
-
 }
