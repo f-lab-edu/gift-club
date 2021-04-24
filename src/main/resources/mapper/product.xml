@@ -20,5 +20,4 @@
         UPDATE product SET stock = #{stock}
         WHERE id = #{id}
     </update>
-
 </mapper>

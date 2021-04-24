@@ -18,18 +18,21 @@
         <result column="store_phone" property="storePhone"/>
         <result column="store_introduce" property="storeIntroduce"/>
         <result column="store_category_id" property="storeCategoryId"/>
-        <result column="member_id" property="memberId"/>
+        <result column="member_name" property="memberName"/>
         <collection property="storeCategory" resultMap="StoreCategory"/>
     </resultMap>
+
     <insert id="insertStore" parameterType="com.giftclub.store.Store">
         INSERT INTO store(store_category_id, member_id, store_name, store_phone, store_introduce)
         VALUES (#{storeCategoryId}, #{memberId}, #{storeName}, #{storePhone}, #{storeIntroduce})
     </insert>
+
     <select id="isStoreExists" resultType="boolean">
         SELECT IF(COUNT(*) = 1, 1, 0)
         FROM store
         WHERE store_name = #{storeName}
     </select>
+
     <select id="selectStoreById" resultMap="Store">
         SELECT
         store.store_id,
@@ -43,4 +46,11 @@
         JOIN member ON store.member_id = member.member_id
         WHERE store.store_id = #{storeId}
     </select>
+
+    <update id="modifyStoreById">
+        UPDATE store
+        SET store_name = #{storeName}, store_phone = #{storePhone}, store_introduce = #{storeIntroduce}
+        WHERE store_id = #{storeId}
+    </update>
+
 </mapper>

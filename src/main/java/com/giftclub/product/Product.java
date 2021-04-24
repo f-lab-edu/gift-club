@@ -1,11 +1,8 @@
 package com.giftclub.product;
 
 import lombok.*;
-
 @Getter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class Product {
 
     private Long id;

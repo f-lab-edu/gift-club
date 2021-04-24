@@ -24,15 +24,9 @@ public class SessionUtils {
         return (Member) httpSession.getAttribute(LOGIN_MEMBER);
     }
 
-    public void setLoginMemberId(Long memberId) {
-        httpSession.setAttribute(LOGIN_MEMBER_ID, memberId);
-        log.info("세션 LOGIN_MEMBER_ID 적용: {}", memberId);
-    }
-
     public void setLoginMember(Member member) {
         httpSession.setAttribute(LOGIN_MEMBER, member);
     }
-
 
     public void deleteLoginMemberId() {
         httpSession.removeAttribute(LOGIN_MEMBER_ID);

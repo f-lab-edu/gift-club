@@ -6,6 +6,7 @@ import com.giftclub.common.exception.ValidationException;
 import com.giftclub.common.security.Encoder;
 import com.giftclub.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,10 @@ public class MemberService {
     private final SessionUtils sessionUtils;
     private final Encoder encoder;
 
-    public Member signup(Member member) {
+    @Transactional
+    public Member signUp(Member member) {
 
+        validateSignUp(member);
         member.setMemberPassword(encoder.encode(member.getMemberPassword()));
         this.memberMapper.insertMember(member);
         return member;
@@ -31,7 +34,7 @@ public class MemberService {
         }
     }
 
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional
     public Member update(final Member member) {
 
         member.setMemberPassword(encoder.encode(member.getMemberPassword()));
@@ -40,10 +43,10 @@ public class MemberService {
 
     }
 
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional
     public void delete() {
 
-        memberMapper.deleteMemberByMemberId(sessionUtils.getLoginMemberId());
+        memberMapper.deleteMemberByMemberId(sessionUtils.getLoginMember().getMemberId());
 
     }
 }

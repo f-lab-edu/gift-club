@@ -53,4 +53,3 @@ CREATE TABLE `giftCard` (
   FOREIGN KEY (`to_member_id`) REFERENCES `member` (`member_id`),
   FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
 );
-
