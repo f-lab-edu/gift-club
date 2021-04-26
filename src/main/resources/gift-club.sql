@@ -42,3 +42,14 @@ CREATE TABLE `product` (
   FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`)
 );
 
+CREATE TABLE `giftCard` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
+  `to_member_id` INTEGER PRIMARY KEY NOT NULL,
+  `from_member_id` INTEGER PRIMARY KEY NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `giftCard_status` varchar(45) NOT NULL,
+  `product_id` INTEGER NOT NULL,
+  `pay_id` INTEGER NOT NULL,
+  FOREIGN KEY (`to_member_id`) REFERENCES `member` (`member_id`),
+  FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+);

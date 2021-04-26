@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.giftclub.mapper.GiftCardMapper">
+
+    <insert id="insertGift" parameterType="com.giftclub.giftCard.GiftCard">
+        INSERT INTO giftCard(id, to_member_id, from_member_id, content, giftCard_status, product_id, pay_id)
+        VALUES (#{id}, #{toMemberId}, #{fromMemberId}, #{content}, #{giftCardStatus}, #{productId}, #{payId})
+    </insert>
+
+</mapper>

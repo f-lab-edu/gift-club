@@ -9,4 +9,15 @@
         VALUES (#{id}, #{name}, #{price}, #{information}, #{stock}, #{storeId})
     </insert>
 
+    <select id="selectProductById" resultType="com.giftclub.product.Product">
+        SELECT
+        name AS name, price AS price, stock AS stock, information AS information, store_id AS storeId
+        FROM Product
+        WHERE id = #{Id}
+    </select>
+
+    <update id="decreaseProduct">
+        UPDATE product SET stock = #{stock}
+        WHERE id = #{id}
+    </update>
 </mapper>

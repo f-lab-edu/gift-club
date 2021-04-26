@@ -1,11 +1,10 @@
 package com.giftclub.product;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 @Getter
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     private Long id;
@@ -17,11 +16,15 @@ public class Product {
     private int price;
 
     @NonNull
-    private int stock;
+    private Long stock;
 
     @NonNull
     private String information;
 
     @NonNull
     private Long storeId;
+
+    public Product(Long stock) {
+        this.stock = stock;
+    }
 }
