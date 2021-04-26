@@ -20,4 +20,10 @@
         UPDATE product SET stock = #{stock}
         WHERE id = #{id}
     </update>
+
+    <update id="updateProduct">
+        UPDATE product SET name = #{name}, price = #{price}, information = #{information}, stock = #{stock}
+        WHERE id = #{id}
+    </update>
+
 </mapper>
